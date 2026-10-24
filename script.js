@@ -3,7 +3,7 @@ const button = document.getElementById("button");
 const ul = document.getElementById("ul");
 
 // LocalStorage se existing todos load karein agar maujood hon
-let todos = JSON.parse(localStorage.getItem("todos")) || [];
+let localTodos = JSON.parse(localStorage.getItem("todos")) || [];
 
 // Initial render
 render();
@@ -19,13 +19,35 @@ button.addEventListener("click", () => {
     isEditing: false,
   };
 
-  todos.push(addTodo);
+  localTodos.push(addTodo);
 
-  localStorage.setItem("todos", JSON.stringify(todos));
+  localStorage.setItem("todos", JSON.stringify(localTodos));
   render();
 
   // Clear input field
   input.value = "";
+});
+
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    const text = input.value.trim();
+    if (!text) return;
+
+    const addTodo = {
+      id: Date.now(),
+      todoName: text,
+      isCompleted: false,
+      isEditing: false,
+    };
+
+    localTodos.push(addTodo);
+
+    localStorage.setItem("todos", JSON.stringify(localTodos));
+    render();
+
+    // Clear input field
+    input.value = "";
+  }
 });
 
 // Event delegation se delete aur edit handle karein
@@ -41,27 +63,27 @@ ul.addEventListener("click", (e) => {
     target.classList.contains("delete-icon") ||
     target.closest(".delete-icon")
   ) {
-    todos = todos.filter((t) => t.id !== todoId);
-    localStorage.setItem("todos", JSON.stringify(todos));
+    localTodos = localTodos.filter((t) => t.id !== todoId);
+    localStorage.setItem("todos", JSON.stringify(localTodos));
     render();
   }
 
   // Edit button
   if (target.classList.contains("edit-icon") || target.closest(".edit-icon")) {
-    const todo = todos.find((t) => t.id === todoId);
+    const todo = localTodos.find((t) => t.id === todoId);
     if (!todo) return;
 
     const newName = prompt("Edit your todo:", todo.todoName);
     if (newName !== null && newName.trim() !== "") {
       todo.todoName = newName.trim();
-      localStorage.setItem("todos", JSON.stringify(todos));
+      localStorage.setItem("todos", JSON.stringify(localTodos));
       render();
     }
   }
 });
 
 function render() {
-  ul.innerHTML = todos
+  ul.innerHTML = localTodos
     .map(
       (todo) => `
     <li class="list-items" data-id="${todo.id}">
