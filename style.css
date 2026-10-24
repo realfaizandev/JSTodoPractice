@@ -125,7 +125,9 @@ body {
 }
 
 .edit-icon,
-.delete-icon {
+.delete-icon,
+.save-icon,
+.cancel-icon {
   width: 32px;
   height: 32px;
   display: flex;
@@ -153,6 +155,37 @@ body {
 .delete-icon:hover {
   color: #ef4444;
   background: #fef2f2;
+}
+
+.save-icon {
+  color: #10b981;
+}
+
+.save-icon:hover {
+  color: #059669;
+  background: #ecfdf5;
+}
+
+.cancel-icon {
+  color: #94a3b8;
+}
+
+.cancel-icon:hover {
+  color: #ef4444;
+  background: #fef2f2;
+}
+
+.edit-input {
+  flex: 1;
+  padding: 6px 12px;
+  margin-right: 8px;
+  border-radius: 8px;
+  border: 1.5px solid #6366f1;
+  background: #ffffff;
+  font-size: 15px;
+  color: #1e293b;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.15);
 }
 
 @media (max-width: 480px) {
