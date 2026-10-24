@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="mainContainer">
+      <div class="inputContainer">
+        <input
+          type="text"
+          class="input"
+          placeholder="Enter your todo"
+          id="input"
+        />
+        <button class="btn" id="button">Add Todo</button>
+      </div>
+
+      <div id="listContainer">
+        <ul id="ul" class="ul">
+          <li class="list-items">
+            <span class="todo-text">Todo 1</span>
+            <div class="actions">
+              <i class="bi bi-pencil-fill edit-icon"></i>
+              <i class="bi bi-trash-fill delete-icon"></i>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
